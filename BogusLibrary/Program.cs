@@ -7,6 +7,16 @@ class Program
 {
     static void Main(string[] args)
     {
+        var languageCode = GetLanguage();
+
+        GenerateClient(languageCode);
+        GenerateCompany(languageCode);
+        GenerateVehicle(languageCode);
+        Console.ReadLine();
+    }
+
+    public static string GetLanguage()
+    {
         Console.WriteLine("Fake data generator");
         Console.WriteLine("1 - English");
         Console.WriteLine("2 - French");
@@ -17,7 +27,7 @@ class Program
         Console.WriteLine("7 - German");
         Console.WriteLine("");
         Console.WriteLine("Choose the Language:");
-        var code =  Console.ReadLine();
+        var code = Console.ReadLine();
 
         var languageCode = string.Empty;
         if (code == "1") languageCode = "en_US";
@@ -31,25 +41,28 @@ class Program
         if (string.IsNullOrEmpty(languageCode))
             languageCode = "en_US";
 
-
         Console.Clear();
 
-        var clientes = FakeData.ListClientsFake(languageCode);
+        return languageCode;
+    }
+
+    public static void GenerateCompany(string languageCode)
+    {
+        var companies = FakeData.ListCompaniesFake(languageCode);
         Console.WriteLine("--------------------------------------------------------------------------------------------");
-        Console.WriteLine("                                           Clients                                          ");
+        Console.WriteLine("                                         Companies                                          ");
         Console.WriteLine("--------------------------------------------------------------------------------------------");
-        foreach (var client in clientes)
+        foreach (var company in companies)
         {
-            Console.WriteLine(string.Format("Id: {0}", client.Id.ToString()));
-            Console.WriteLine(string.Format("Name: {0}  Address: {1}  Birthday: {2}", client.Name.ToString().PadRight(31, ' '), client.Address.ToString().PadRight(31, ' '), client.Birthday.ToString().Substring(1,10).PadRight(17, ' ')));
-            Console.WriteLine(string.Format("Email: {0}  City: {1}  Active: {2}", client.Email.ToString().PadRight(30, ' '), client.City.ToString().PadRight(34, ' '), client.Active.ToString().PadRight(5, ' ')));
-            Console.WriteLine(string.Format("Father's Name: {0} ZipCode: {1}  Salary: {2}", client.FatherName.ToString().PadRight(23, ' '), client.ZipCode.ToString().PadRight(31, ' '), client.Salary.ToString().PadRight(20, ' ')));
-            Console.WriteLine(string.Format("Mother's Name: {0}  Phone: {1}", client.MotherName.ToString().PadRight(22, ' '), client.Phone.ToString().PadRight(20, ' ')));
-            //Console.WriteLine(cli.Gender);
+            Console.WriteLine(string.Format("Name: {0}  Catch Phrase: {1}", company.CompanyName.ToString().PadRight(34, ' '), company.CatchPhrase.ToString()));
+            Console.WriteLine(string.Format("Suffix: {0}  Bs: {1}", company.CompanySuffix.ToString().PadRight(32, ' '), company.Bs.ToString()));
             Console.WriteLine("");
         }
         Console.WriteLine("");
+    }
 
+    public static void GenerateVehicle(string languageCode)
+    {
         var vehicles = FakeData.ListVehiclesFake(languageCode);
         Console.WriteLine("--------------------------------------------------------------------------------------------");
         Console.WriteLine("                                         Vehicles                                           ");
@@ -57,28 +70,31 @@ class Program
         foreach (var vehicle in vehicles)
         {
             Console.WriteLine(string.Format("Vin: {0}", vehicle.Vin.ToString()));
-            Console.WriteLine(string.Format("Model: {0}-{1}", vehicle.Model.ToString(), vehicle.Type.ToString()));
+            Console.WriteLine(string.Format("Model: {0}", vehicle.Model.ToString()));
+            Console.WriteLine(string.Format("Model: {0}", vehicle.Type.ToString()));
             Console.WriteLine(string.Format("Manufacturer: {0}", vehicle.Manufacturer.ToString()));
             Console.WriteLine(string.Format("Fuel: {0}", vehicle.Fuel.ToString()));
             Console.WriteLine("");
         }
         Console.WriteLine("");
+    }
 
-
-        var companies = FakeData.ListCompaniesFake(languageCode);
+    public static void GenerateClient(string languageCode)
+    {
+        var clientes = FakeData.ListClientsFake(languageCode);
         Console.WriteLine("--------------------------------------------------------------------------------------------");
-        Console.WriteLine("                                         Companies                                          ");
+        Console.WriteLine("                                          Clients                                           ");
         Console.WriteLine("--------------------------------------------------------------------------------------------");
-        foreach (var company in companies)
+        foreach (var client in clientes)
         {
-            Console.WriteLine(string.Format("Suffix: {0}", company.CompanySuffix.ToString()));
-            Console.WriteLine(string.Format("Name: {0}", company.CompanyName.ToString()));
-            Console.WriteLine(string.Format("Catch Phrase: {0}", company.CatchPhrase.ToString())); 
-            Console.WriteLine(string.Format("Bs: {0}", company.Bs.ToString()));
-            Console.WriteLine("");
+            Console.WriteLine(string.Format("Id: {0}", client.Id.ToString()));
+            Console.WriteLine(string.Format("Name: {0}  Address: {1}  Birthday: {2}", client.Name.ToString().PadRight(31, ' '), client.Address.ToString().PadRight(31, ' '), client.Birthday.ToString().Substring(1, 10).PadRight(17, ' ')));
+            Console.WriteLine(string.Format("Email: {0}  City: {1}  Active: {2}", client.Email.ToString().PadRight(30, ' '), client.City.ToString().PadRight(34, ' '), client.Active.ToString().PadRight(5, ' ')));
+            Console.WriteLine(string.Format("Father's Name: {0} ZipCode: {1}  Salary: {2}", client.FatherName.ToString().PadRight(23, ' '), client.ZipCode.ToString().PadRight(31, ' '), client.Salary.ToString().PadRight(20, ' ')));
+            Console.WriteLine(string.Format("Mother's Name: {0}  Phone: {1}", client.MotherName.ToString().PadRight(22, ' '), client.Phone.ToString().PadRight(20, ' ')));
+            //Console.WriteLine(cli.Gender);
             Console.WriteLine("");
         }
         Console.WriteLine("");
-        Console.ReadLine();
     }
 }
