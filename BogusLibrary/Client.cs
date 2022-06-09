@@ -20,6 +20,6 @@ namespace BogusLibrary
         public DateTime Birthday { get; set; }
         //public string Gender { get; set; }
         public bool Active { get; set; }
-        public decimal Salary { get; set; }
+        public int Salary { get; set; }
     }
 }

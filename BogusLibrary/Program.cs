@@ -36,22 +36,18 @@ class Program
 
         var clientes = FakeData.ListClientsFake(languageCode);
 
-        foreach (var cli in clientes)
-        {
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
+        Console.WriteLine("                                           Client                                           ");
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
 
-            Console.WriteLine(cli.Id);
-            Console.WriteLine(cli.Name);
-            Console.WriteLine(cli.FatherName);
-            Console.WriteLine(cli.MotherName);
-            Console.WriteLine(cli.Email);
-            Console.WriteLine(cli.Phone);
-            Console.WriteLine(cli.Address);
-            Console.WriteLine(cli.ZipCode);
-            Console.WriteLine(cli.City);
-            Console.WriteLine(cli.Birthday);
+        foreach (var client in clientes)
+        {
+            Console.WriteLine(string.Format("Id: {0}", client.Id.ToString()));
+            Console.WriteLine(string.Format("Name: {0}  Address: {1}  Birthday: {2}", client.Name.ToString().PadRight(31, ' '), client.Address.ToString().PadRight(31, ' '), client.Birthday.ToString().Substring(1,10).PadRight(17, ' ')));
+            Console.WriteLine(string.Format("Email: {0}  City: {1}  Active: {2}", client.Email.ToString().PadRight(30, ' '), client.City.ToString().PadRight(34, ' '), client.Active.ToString().PadRight(5, ' ')));
+            Console.WriteLine(string.Format("Father's Name: {0} ZipCode: {1}  Salary: {2}", client.FatherName.ToString().PadRight(23, ' '), client.ZipCode.ToString().PadRight(31, ' '), client.Salary.ToString().PadRight(20, ' ')));
+            Console.WriteLine(string.Format("Mother's Name: {0}  Phone: {1}", client.MotherName.ToString().PadRight(22, ' '), client.Phone.ToString().PadRight(20, ' ')));
             //Console.WriteLine(cli.Gender);
-            Console.WriteLine(cli.Active);
-            Console.WriteLine(cli.Salary);
             Console.WriteLine("");
         }
         Console.ReadLine();

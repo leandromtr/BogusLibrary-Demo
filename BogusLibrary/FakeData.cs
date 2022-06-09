@@ -21,11 +21,11 @@ namespace BogusLibrary
                 .RuleFor(c => c.Address, f => f.Person.Address.Street)
                 .RuleFor(c => c.ZipCode, f => f.Person.Address.ZipCode)
                 .RuleFor(c => c.City, f => f.Person.Address.City)
-                .RuleFor(c => c.Birthday, f => f.Date.Recent(100))
+                .RuleFor(c => c.Birthday, f => f.Person.DateOfBirth.Date)
                 //.RuleFor(c => c.Gender, f => f.PickRandom(new string[] { "male", "femine" }))
                 .RuleFor(c => c.Active, f => f.PickRandomParam(new bool[] { true, true, false }))
-                .RuleFor(o => o.Salary, f => f.Random.Decimal(500, 2000));
-            var clientes = clientFaker.Generate(10);
+                .RuleFor(o => o.Salary, f => f.Random.Int(1000, 3000));
+            var clientes = clientFaker.Generate(5);
             return clientes;
         }
 
