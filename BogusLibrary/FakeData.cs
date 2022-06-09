@@ -9,11 +9,13 @@ namespace BogusLibrary
 {
     public class FakeData
     {
-        public static List<Client> ListClientsFake()
+        public static List<Client> ListClientsFake(string languageCode)
         {
-            var clientFaker = new Faker<Client>("fr")
+            var clientFaker = new Faker<Client>(languageCode)
                 .RuleFor(c => c.Id, f => f.IndexFaker)
                 .RuleFor(c => c.Name, f => f.Person.FullName)
+                .RuleFor(c => c.FatherName, f => f.Name.FullName(Bogus.DataSets.Name.Gender.Male))
+                .RuleFor(c => c.MotherName, f => f.Name.FullName(Bogus.DataSets.Name.Gender.Female))
                 .RuleFor(c => c.Email, f => f.Person.Email)
                 .RuleFor(c => c.Phone, f => f.Person.Phone)
                 .RuleFor(c => c.Address, f => f.Person.Address.Street)
