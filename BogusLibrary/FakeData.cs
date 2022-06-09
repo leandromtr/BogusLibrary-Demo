@@ -60,11 +60,24 @@ namespace BogusLibrary
                 .RuleFor(c => c.AccountName, f => f.Finance.AccountName())
                 .RuleFor(c => c.Amount, f => f.Finance.Amount())
                 .RuleFor(c => c.TransactionType, f => f.Finance.TransactionType())
-                .RuleFor(c => c.CreditCardNumber, f => f.Commerce.Color())
+                .RuleFor(c => c.CreditCardNumber, f => f.Finance.CreditCardNumber())
                 .RuleFor(c => c.CreditCardCvv, f => f.Finance.CreditCardCvv())
                 .RuleFor(c => c.Iban, f => f.Finance.Iban());
             var finances = financesFaker.Generate(5);
             return finances;
+        }
+
+        public static List<Commerce> ListCommercesFake(string languageCode)
+        {
+            var commercesFaker = new Faker<Commerce>(languageCode)
+                        .RuleFor(c => c.Department, f => f.Commerce.Department())
+                        .RuleFor(c => c.ProductName, f => f.Commerce.ProductName())
+                        .RuleFor(c => c.Color, f => f.Commerce.Color())
+                        .RuleFor(c => c.Product, f => f.Commerce.Product())
+                        .RuleFor(c => c.ProductAdjective, f => f.Commerce.ProductAdjective())
+                        .RuleFor(c => c.ProductMaterial, f => f.Commerce.ProductMaterial());
+            var commerces = commercesFaker.Generate(5);
+            return commerces;
         }
     }
 }

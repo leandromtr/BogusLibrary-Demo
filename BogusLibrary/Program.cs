@@ -13,19 +13,17 @@ class Program
         GenerateCompany(languageCode);
         GenerateVehicle(languageCode);
         GenerateFinance(languageCode);
+        GenerateCommerce(languageCode);
         Console.ReadLine();
     }
 
     public static string GetLanguage()
     {
-        Console.WriteLine("Fake data generator");
-        Console.WriteLine("1 - English");
-        Console.WriteLine("2 - French");
-        Console.WriteLine("3 - Spanish");
-        Console.WriteLine("4 - Portuguese");
-        Console.WriteLine("5 - Italian");
-        Console.WriteLine("6 - Turkish");
-        Console.WriteLine("7 - German");
+        Console.WriteLine("--------------------- FAKE DATA GENERATOR ---------------------");
+        Console.WriteLine("1 - English                                   5 - Portuguese ");
+        Console.WriteLine("2 - French                                    6 - Spanish");
+        Console.WriteLine("3 - German                                    7 - Swedish");
+        Console.WriteLine("4 - Italian                                   8 - Turkish");
         Console.WriteLine("");
         Console.WriteLine("Choose the Language:");
         var code = Console.ReadLine();
@@ -33,11 +31,12 @@ class Program
         var languageCode = string.Empty;
         if (code == "1") languageCode = "en_US";
         if (code == "2") languageCode = "fr";
-        if (code == "3") languageCode = "es";
-        if (code == "4") languageCode = "pt_BR";
-        if (code == "5") languageCode = "it";
-        if (code == "6") languageCode = "tr";
-        if (code == "7") languageCode = "de";
+        if (code == "3") languageCode = "de";
+        if (code == "4") languageCode = "it";
+        if (code == "5") languageCode = "pt_BR";
+        if (code == "6") languageCode = "es";
+        if (code == "7") languageCode = "sv";
+        if (code == "8") languageCode = "tr";
 
         if (string.IsNullOrEmpty(languageCode))
             languageCode = "en_US";
@@ -111,6 +110,22 @@ class Program
             Console.WriteLine(string.Format("Account: {0}", finance.Account.ToString()));
             Console.WriteLine(string.Format("AccountName: {0}  TransactionType: {1}  Amount: {2}", finance.AccountName.ToString().PadRight(31, ' '), finance.TransactionType.ToString().PadRight(13, ' '), finance.Amount.ToString().PadRight(20, ' ')));
             Console.WriteLine(string.Format("CreditCardNumber: {0}  CreditCardCvv: {1}  Iban: {2}", finance.CreditCardNumber.ToString().PadRight(26, ' '), finance.CreditCardCvv.ToString().PadRight(15, ' '), finance.Iban.ToString().PadRight(23, ' ')));
+            Console.WriteLine("");
+        }
+        Console.WriteLine("");
+    }
+
+    public static void GenerateCommerce(string languageCode)
+    {
+        var commerces = FakeData.ListCommercesFake(languageCode);
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
+        Console.WriteLine("                                         Commerces                                          ");
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
+        foreach (var commerce in commerces)
+        {
+            Console.WriteLine(string.Format("Product: {0}  ProductName: {1}", commerce.Product.ToString().PadRight(35, ' '), commerce.ProductName.ToString()));
+            Console.WriteLine(string.Format("Department: {0}  Color: {1}  Price: {2}", commerce.Department.ToString().PadRight(32, ' '), commerce.Color.ToString().PadRight(35, ' '), commerce.Price.ToString().PadRight(10, ' ')));
+            Console.WriteLine(string.Format("ProductAdjective: {0}  ProductMaterial: {1}", commerce.ProductAdjective.ToString().PadRight(26, ' '), commerce.ProductMaterial.ToString().PadRight(23, ' ')));
             Console.WriteLine("");
         }
         Console.WriteLine("");
