@@ -35,11 +35,9 @@ class Program
         Console.Clear();
 
         var clientes = FakeData.ListClientsFake(languageCode);
-
         Console.WriteLine("--------------------------------------------------------------------------------------------");
         Console.WriteLine("                                           Clients                                          ");
         Console.WriteLine("--------------------------------------------------------------------------------------------");
-
         foreach (var client in clientes)
         {
             Console.WriteLine(string.Format("Id: {0}", client.Id.ToString()));
@@ -50,22 +48,37 @@ class Program
             //Console.WriteLine(cli.Gender);
             Console.WriteLine("");
         }
-
+        Console.WriteLine("");
 
         var vehicles = FakeData.ListVehiclesFake(languageCode);
-
         Console.WriteLine("--------------------------------------------------------------------------------------------");
         Console.WriteLine("                                         Vehicles                                           ");
         Console.WriteLine("--------------------------------------------------------------------------------------------");
-
         foreach (var vehicle in vehicles)
         {
             Console.WriteLine(string.Format("Vin: {0}", vehicle.Vin.ToString()));
             Console.WriteLine(string.Format("Model: {0}-{1}", vehicle.Model.ToString(), vehicle.Type.ToString()));
-            Console.WriteLine(string.Format("Manufacturer: {0}", vehicle.Manufacturer.ToString())); 
+            Console.WriteLine(string.Format("Manufacturer: {0}", vehicle.Manufacturer.ToString()));
             Console.WriteLine(string.Format("Fuel: {0}", vehicle.Fuel.ToString()));
             Console.WriteLine("");
         }
+        Console.WriteLine("");
+
+
+        var companies = FakeData.ListCompaniesFake(languageCode);
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
+        Console.WriteLine("                                         Companies                                          ");
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
+        foreach (var company in companies)
+        {
+            Console.WriteLine(string.Format("Suffix: {0}", company.CompanySuffix.ToString()));
+            Console.WriteLine(string.Format("Name: {0}", company.CompanyName.ToString()));
+            Console.WriteLine(string.Format("Catch Phrase: {0}", company.CatchPhrase.ToString())); 
+            Console.WriteLine(string.Format("Bs: {0}", company.Bs.ToString()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+        }
+        Console.WriteLine("");
         Console.ReadLine();
     }
 }

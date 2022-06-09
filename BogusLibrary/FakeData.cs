@@ -41,6 +41,15 @@ namespace BogusLibrary
             return vehicles;
         }
 
-        //Vehicle
+        public static List<Company> ListCompaniesFake(string languageCode)
+        {
+            var companiesFaker = new Faker<Company>(languageCode)
+                .RuleFor(c => c.CompanySuffix, f => f.Company.CompanySuffix())
+                .RuleFor(c => c.CompanyName, f => f.Company.CompanyName())
+                .RuleFor(c => c.CatchPhrase, f => f.Company.CatchPhrase())
+                .RuleFor(c => c.Bs, f => f.Company.Bs());
+            var companies = companiesFaker.Generate(10);
+            return companies;
+        }
     }
 }
