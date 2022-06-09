@@ -37,7 +37,7 @@ class Program
         var clientes = FakeData.ListClientsFake(languageCode);
 
         Console.WriteLine("--------------------------------------------------------------------------------------------");
-        Console.WriteLine("                                           Client                                           ");
+        Console.WriteLine("                                           Clients                                          ");
         Console.WriteLine("--------------------------------------------------------------------------------------------");
 
         foreach (var client in clientes)
@@ -48,6 +48,22 @@ class Program
             Console.WriteLine(string.Format("Father's Name: {0} ZipCode: {1}  Salary: {2}", client.FatherName.ToString().PadRight(23, ' '), client.ZipCode.ToString().PadRight(31, ' '), client.Salary.ToString().PadRight(20, ' ')));
             Console.WriteLine(string.Format("Mother's Name: {0}  Phone: {1}", client.MotherName.ToString().PadRight(22, ' '), client.Phone.ToString().PadRight(20, ' ')));
             //Console.WriteLine(cli.Gender);
+            Console.WriteLine("");
+        }
+
+
+        var vehicles = FakeData.ListVehiclesFake(languageCode);
+
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
+        Console.WriteLine("                                         Vehicles                                           ");
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
+
+        foreach (var vehicle in vehicles)
+        {
+            Console.WriteLine(string.Format("Vin: {0}", vehicle.Vin.ToString()));
+            Console.WriteLine(string.Format("Model: {0}-{1}", vehicle.Model.ToString(), vehicle.Type.ToString()));
+            Console.WriteLine(string.Format("Manufacturer: {0}", vehicle.Manufacturer.ToString())); 
+            Console.WriteLine(string.Format("Fuel: {0}", vehicle.Fuel.ToString()));
             Console.WriteLine("");
         }
         Console.ReadLine();
