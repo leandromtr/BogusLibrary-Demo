@@ -12,6 +12,7 @@ class Program
         GenerateClient(languageCode);
         GenerateCompany(languageCode);
         GenerateVehicle(languageCode);
+        GenerateFinance(languageCode);
         Console.ReadLine();
     }
 
@@ -93,6 +94,23 @@ class Program
             Console.WriteLine(string.Format("Father's Name: {0} ZipCode: {1}  Salary: {2}", client.FatherName.ToString().PadRight(23, ' '), client.ZipCode.ToString().PadRight(31, ' '), client.Salary.ToString().PadRight(20, ' ')));
             Console.WriteLine(string.Format("Mother's Name: {0}  Phone: {1}", client.MotherName.ToString().PadRight(22, ' '), client.Phone.ToString().PadRight(20, ' ')));
             //Console.WriteLine(cli.Gender);
+            Console.WriteLine("");
+        }
+        Console.WriteLine("");
+    }
+
+    public static void GenerateFinance(string languageCode)
+    {
+        var finances = FakeData.ListFinancesFake(languageCode);
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
+        Console.WriteLine("                                          Finances                                          ");
+        Console.WriteLine("--------------------------------------------------------------------------------------------");
+        foreach (var finance in finances)
+        {
+
+            Console.WriteLine(string.Format("Account: {0}", finance.Account.ToString()));
+            Console.WriteLine(string.Format("AccountName: {0}  TransactionType: {1}  Amount: {2}", finance.AccountName.ToString().PadRight(31, ' '), finance.TransactionType.ToString().PadRight(13, ' '), finance.Amount.ToString().PadRight(20, ' ')));
+            Console.WriteLine(string.Format("CreditCardNumber: {0}  CreditCardCvv: {1}  Iban: {2}", finance.CreditCardNumber.ToString().PadRight(26, ' '), finance.CreditCardCvv.ToString().PadRight(15, ' '), finance.Iban.ToString().PadRight(23, ' ')));
             Console.WriteLine("");
         }
         Console.WriteLine("");

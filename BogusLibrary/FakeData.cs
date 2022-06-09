@@ -37,7 +37,7 @@ namespace BogusLibrary
                 .RuleFor(c => c.Model, f => f.Vehicle.Model())
                 .RuleFor(c => c.Type, f => f.Vehicle.Type())
                 .RuleFor(c => c.Fuel, f => f.Vehicle.Fuel());
-            var vehicles = vehicleFaker.Generate(10);
+            var vehicles = vehicleFaker.Generate(5);
             return vehicles;
         }
 
@@ -48,8 +48,23 @@ namespace BogusLibrary
                 .RuleFor(c => c.CompanyName, f => f.Company.CompanyName())
                 .RuleFor(c => c.CatchPhrase, f => f.Company.CatchPhrase())
                 .RuleFor(c => c.Bs, f => f.Company.Bs());
-            var companies = companiesFaker.Generate(10);
+            var companies = companiesFaker.Generate(5);
             return companies;
+        }
+
+
+        public static List<Finance> ListFinancesFake(string languageCode)
+        {
+            var financesFaker = new Faker<Finance>(languageCode)
+                .RuleFor(c => c.Account, f => f.Finance.Account())
+                .RuleFor(c => c.AccountName, f => f.Finance.AccountName())
+                .RuleFor(c => c.Amount, f => f.Finance.Amount())
+                .RuleFor(c => c.TransactionType, f => f.Finance.TransactionType())
+                .RuleFor(c => c.CreditCardNumber, f => f.Commerce.Color())
+                .RuleFor(c => c.CreditCardCvv, f => f.Finance.CreditCardCvv())
+                .RuleFor(c => c.Iban, f => f.Finance.Iban());
+            var finances = financesFaker.Generate(5);
+            return finances;
         }
     }
 }
